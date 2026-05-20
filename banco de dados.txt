@@ -1,0 +1,8 @@
+CREATE TABLE game (
+    id SERIAL PRIMARY KEY,
+    titulo VARCHAR(100),
+    genero VARCHAR(50),
+    plataforma VARCHAR(50),
+    preco NUMERIC(10,2)
+);
+
