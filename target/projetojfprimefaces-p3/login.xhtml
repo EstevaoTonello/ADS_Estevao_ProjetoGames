@@ -1,0 +1,258 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    <h:head>
+        <title>Login - Sistema de Games</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .login-container {
+                background: white;
+                border-radius: 15px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                overflow: hidden;
+                width: 100%;
+                max-width: 450px;
+                animation: slideIn 0.5s ease-out;
+            }
+            
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .login-header {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 40px 30px;
+                text-align: center;
+            }
+            
+            .login-header h1 {
+                font-size: 2.5em;
+                margin-bottom: 10px;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            }
+            
+            .login-header p {
+                font-size: 1.1em;
+                opacity: 0.95;
+            }
+            
+            .login-body {
+                padding: 40px 30px;
+            }
+            
+            .form-group {
+                margin-bottom: 25px;
+            }
+            
+            .form-group label {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: 600;
+                color: #333;
+                font-size: 0.95em;
+            }
+            
+            .form-group input[type="text"],
+            .form-group input[type="password"] {
+                width: 100%;
+                padding: 12px 15px;
+                border: 2px solid #e0e0e0;
+                border-radius: 8px;
+                font-size: 1em;
+                transition: all 0.3s ease;
+            }
+            
+            .form-group input[type="text"]:focus,
+            .form-group input[type="password"]:focus {
+                outline: none;
+                border-color: #667eea;
+                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            }
+            
+            .form-group input::placeholder {
+                color: #aaa;
+            }
+            
+            .login-button {
+                width: 100%;
+                padding: 12px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 1.1em;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                margin-top: 10px;
+            }
+            
+            .login-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            }
+            
+            .login-button:active {
+                transform: translateY(0);
+            }
+            
+            .login-footer {
+                padding: 20px 30px;
+                background-color: #f8f9fa;
+                border-top: 1px solid #e0e0e0;
+            }
+            
+            .login-footer p {
+                margin-bottom: 10px;
+                color: #666;
+                font-size: 0.9em;
+            }
+            
+            .credentials-list {
+                background: white;
+                padding: 10px;
+                border-radius: 5px;
+                font-family: 'Courier New', monospace;
+                font-size: 0.85em;
+                color: #333;
+                line-height: 1.6;
+            }
+            
+            .credentials-list span {
+                display: block;
+                color: #667eea;
+                font-weight: 600;
+            }
+            
+            .message-area {
+                margin-bottom: 20px;
+            }
+            
+            .info-box {
+                background: #e3f2fd;
+                border-left: 4px solid #667eea;
+                padding: 15px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+                color: #1565c0;
+            }
+            
+            .info-box strong {
+                display: block;
+                margin-bottom: 5px;
+            }
+        </style>
+    </h:head>
+    
+    <h:body>
+        <div class="login-container">
+            
+            <!-- CABEÇALHO DO LOGIN -->
+            <div class="login-header">
+                <h1>🎮 GAMES</h1>
+                <p>Sistema de Gerenciamento</p>
+            </div>
+            
+            <!-- CORPO DO LOGIN -->
+            <div class="login-body">
+                
+                <!-- MENSAGENS -->
+                <div class="message-area">
+                    <p:growl id="growl" showDetail="true" />
+                </div>
+                
+                <!-- INFORMAÇÃO -->
+                <div class="info-box">
+                    <strong>ℹ️ Bem-vindo!</strong>
+                    Use as credenciais padrão para acessar o sistema
+                </div>
+                
+                <!-- FORMULÁRIO DE LOGIN -->
+                <h:form id="frmLogin">
+                    
+                    <!-- Campo de Email -->
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="pi pi-envelope"></i> E-mail
+                        </label>
+                        <p:inputText id="email" 
+                                    value="#{loginController.game.nome}" 
+                                    placeholder="usuario@gmail.com"
+                                    required="true" 
+                                    requiredMessage="E-mail é obrigatório!"
+                                    style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1em;"/>
+                    </div>
+                    
+                    <!-- Campo de Senha -->
+                    <div class="form-group">
+                        <label for="senha">
+                            <i class="pi pi-lock"></i> Senha
+                        </label>
+                        <p:password id="senha" 
+                                  value="#{loginController.game.senha}"
+                                  placeholder="Digite sua senha"
+                                  required="true" 
+                                  requiredMessage="Senha é obrigatória!"
+                                  feedback="false"
+                                  style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1em;"/>
+                    </div>
+                    
+                    <!-- Botão de Login -->
+                    <p:commandButton id="btnLogin" 
+                                   value="🔓 Acessar" 
+                                   action="#{loginController.validarLogin()}" 
+                                   update="@form"
+                                   styleClass="login-button"/>
+                </h:form>
+                
+            </div>
+            
+            <!-- RODAPÉ COM CREDENCIAIS -->
+            <div class="login-footer">
+                <p><strong>📌 Credenciais de Teste:</strong></p>
+                <div class="credentials-list">
+                    <span>usuario@gmail.com</span>
+                    Senha: 123
+                    
+                    <br/>
+                    
+                    <span>admin@gmail.com</span>
+                    Senha: admin
+                    
+                    <br/>
+                    
+                    <span>gamer@gmail.com</span>
+                    Senha: gamer123
+                </div>
+            </div>
+            
+        </div>
+    </h:body>
+</html>

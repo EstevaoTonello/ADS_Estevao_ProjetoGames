@@ -1,0 +1,5 @@
+br\upf\projetojfprimefaces\resources\JakartaEE10Resource.class
+br\upf\projetojfprimefaces\controller\GameController.class
+br\upf\projetojfprimefaces\JakartaRestConfiguration.class
+br\upf\projetojfprimefaces\controller\LoginController.class
+br\upf\projetojfprimefaces\entity\GameEntity.class
