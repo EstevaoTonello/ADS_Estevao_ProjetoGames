@@ -2,6 +2,11 @@
 <beans xmlns="https://jakarta.ee/xml/ns/jakartaee"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/beans_4_0.xsd"
+<<<<<<< HEAD
        bean-discovery-mode="annotated"
        version="4.0">
 </beans>
+=======
+       bean-discovery-mode="all">
+</beans>
+>>>>>>> 448d01d61316df689763efce065d52cd8270a1ac

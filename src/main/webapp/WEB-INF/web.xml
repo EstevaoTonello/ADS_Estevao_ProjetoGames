@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
@@ -13,12 +14,36 @@
         <param-value>false</param-value>
     </context-param>
 
+=======
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <!-- CONFIGURAÇÕES GERAIS DA APLICAÇÃO -->
+    <display-name>ProjetoGamesJakarta</display-name>
+    <description>Sistema de Gerenciamento de Games</description>
+
+    <!-- SESSION TIMEOUT (em minutos) -->
+    <session-config>
+        <cookie-config>
+            <http-only>true</http-only>
+            <secure>false</secure>
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode>
+        <timeout>30</timeout>
+    </session-config>
+
+    <!-- SERVLET - FACES SERVLET -->
+>>>>>>> 448d01d61316df689763efce065d52cd8270a1ac
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+<<<<<<< HEAD
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
@@ -32,4 +57,96 @@
     <mime-mapping><extension>eot</extension><mime-type>application/vnd.ms-fontobject</mime-type></mime-mapping>
     <mime-mapping><extension>woff</extension><mime-type>application/x-font-woff</mime-type></mime-mapping>
     <mime-mapping><extension>ttf</extension><mime-type>application/x-font-ttf</mime-type></mime-mapping>
+=======
+    <!-- SERVLET MAPPING -->
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- WELCOME FILES (Arquivo padrão ao acessar a aplicação) -->
+    <welcome-file-list>
+        <welcome-file>faces/login.xhtml</welcome-file>
+    </welcome-file-list>
+
+    <!-- MIME MAPPINGS PARA O TEMPLATE MANHATTAN -->
+    <!-- Fontes WOFF2 -->
+    <mime-mapping>
+        <extension>woff2</extension>
+        <mime-type>application/x-font-woff2</mime-type>
+    </mime-mapping>
+
+    <!-- Fontes EOT -->
+    <mime-mapping>
+        <extension>eot</extension>
+        <mime-type>application/vnd.ms-fontobject</mime-type>
+    </mime-mapping>
+
+    <!-- Fontes WOFF -->
+    <mime-mapping>
+        <extension>woff</extension>
+        <mime-type>application/x-font-woff</mime-type>
+    </mime-mapping>
+
+    <!-- Fontes TTF -->
+    <mime-mapping>
+        <extension>ttf</extension>
+        <mime-type>application/x-font-ttf</mime-type>
+    </mime-mapping>
+
+    <!-- PARÂMETROS DE CONTEXTO PARA PRIMEFACES -->
+    
+    <!-- Desabilitar Font Awesome (Manhattan usa seus próprios ícones) -->
+    <context-param>
+        <param-name>primefaces.FONT_AWESOME</param-name>
+        <param-value>false</param-value>
+    </context-param>
+
+    <!-- Tema da aplicação (Manhattan) -->
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>manhattan</param-value>
+    </context-param>
+
+    <!-- Modo de desenvolvimento (desabilitar para produção) -->
+    <context-param>
+        <param-name>jakarta.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+
+    <!-- Facelets Refresh Period (em segundos) -->
+    <context-param>
+        <param-name>jakarta.faces.FACELETS_REFRESH_PERIOD</param-name>
+        <param-value>2</param-value>
+    </context-param>
+
+    <!-- State Saving Method -->
+    <context-param>
+        <param-name>jakarta.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>client</param-value>
+    </context-param>
+
+    <!-- Partial State Saving -->
+    <context-param>
+        <param-name>jakarta.faces.PARTIAL_STATE_SAVING</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <!-- LISTENER -->
+    <listener>
+        <listener-class>jakarta.faces.event.PhaseListener</listener-class>
+    </listener>
+
+    <!-- ERROR PAGES -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error404.html</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error500.html</location>
+    </error-page>
+
+>>>>>>> 448d01d61316df689763efce065d52cd8270a1ac
 </web-app>

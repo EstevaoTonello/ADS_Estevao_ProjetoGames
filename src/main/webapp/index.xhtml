@@ -1,4 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
@@ -128,3 +129,395 @@
 
 </h:body>
 </html>
+=======
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <h:head>
+        <title>Sistema de Gerenciamento de Games</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f5f5f5;
+            }
+            .game-header {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 30px;
+                text-align: center;
+                margin-bottom: 20px;
+                border-radius: 10px;
+            }
+            .game-header h1 {
+                margin: 0;
+                font-size: 2.5em;
+            }
+            .game-header p {
+                margin: 10px 0 0 0;
+                opacity: 0.9;
+            }
+            .button-group {
+                margin: 20px 0;
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+            .stats {
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .stat-item {
+                display: inline-block;
+                margin-right: 30px;
+                font-size: 1.1em;
+            }
+            .stat-number {
+                font-weight: bold;
+                color: #667eea;
+                font-size: 1.5em;
+            }
+        </style>
+    </h:head>
+    
+    <h:body>
+        <!-- CABEÇALHO -->
+        <div class="game-header">
+            <h1>🎮 SISTEMA DE GERENCIAMENTO DE GAMES</h1>
+            <p>Organiza sua biblioteca de games favoritos</p>
+        </div>
+        
+        <!-- FORMULÁRIO PRINCIPAL -->
+        <h:form id="frmList">
+            <!-- ESTATÍSTICAS -->
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">#{gameController.contarGames()}</span>
+                    <span>Games Cadastrados</span>
+                </div>
+            </div>
+            
+            <!-- PAINEL DE LISTA -->
+            <h:panelGroup id="pngList">
+                <p:fieldset legend="📋 Biblioteca de Games" toggleable="true" collapsed="false">
+                    
+                    <!-- TABELA DE GAMES -->
+                    <p:dataTable id="datalist" 
+                                 value="#{gameController.gameList}" 
+                                 var="item"
+                                 selectionMode="single" 
+                                 selection="#{gameController.selected}"
+                                 widgetVar="datalistGameWidgetVar"
+                                 rowKey="#{item.id}"
+                                 paginator="true"
+                                 rows="5"
+                                 rowsPerPageTemplate="5,10,20,50"
+                                 paginatorPosition="both"
+                                 emptyMessage="✗ Nenhum game cadastrado. Clique em 'Novo Game' para começar!"
+                                 styleClass="width: 100%;">
+                        
+                        <!-- AJAX para atualizar botões ao selecionar/desselecionar -->
+                        <p:ajax event="rowSelect" update="btnEdit,btnDelete,btnView"/>
+                        <p:ajax event="rowUnselect" update="btnEdit,btnDelete,btnView"/>
+                        
+                        <!-- Coluna: ID -->
+                        <p:column width="5%" sortBy="#{item.id}" filterBy="#{item.id}">
+                            <f:facet name="header">
+                                <h:outputText value="ID"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        
+                        <!-- Coluna: Nome do Game -->
+                        <p:column width="15%" sortBy="#{item.nome}" filterBy="#{item.nome}">
+                            <f:facet name="header">
+                                <h:outputText value="Nome do Game"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nome}"/>
+                        </p:column>
+                        
+                        <!-- Coluna: Plataforma -->
+                        <p:column width="12%" sortBy="#{item.plataforma}" filterBy="#{item.plataforma}">
+                            <f:facet name="header">
+                                <h:outputText value="Plataforma"/>
+                            </f:facet>
+                            <h:outputText value="#{item.plataforma}"/>
+                        </p:column>
+                        
+                        <!-- Coluna: Gênero -->
+                        <p:column width="12%" sortBy="#{item.genero}" filterBy="#{item.genero}">
+                            <f:facet name="header">
+                                <h:outputText value="Gênero"/>
+                            </f:facet>
+                            <h:outputText value="#{item.genero}"/>
+                        </p:column>
+                        
+                        <!-- Coluna: Ano de Lançamento -->
+                        <p:column width="8%" sortBy="#{item.anoLancamento}" filterBy="#{item.anoLancamento}">
+                            <f:facet name="header">
+                                <h:outputText value="Ano"/>
+                            </f:facet>
+                            <h:outputText value="#{item.anoLancamento}"/>
+                        </p:column>
+                        
+                        <!-- Coluna: Desenvolvedora -->
+                        <p:column width="15%" sortBy="#{item.desenvolvedora}" filterBy="#{item.desenvolvedora}">
+                            <f:facet name="header">
+                                <h:outputText value="Desenvolvedora"/>
+                            </f:facet>
+                            <h:outputText value="#{item.desenvolvedora}"/>
+                        </p:column>
+                        
+                        <!-- Coluna: Preço -->
+                        <p:column width="10%" sortBy="#{item.preco}" filterBy="#{item.preco}">
+                            <f:facet name="header">
+                                <h:outputText value="Preço"/>
+                            </f:facet>
+                            <h:outputText value="R$ #{item.preco}">
+                                <f:convertNumber type="currency" currencySymbol="R$ " minFractionDigits="2"/>
+                            </h:outputText>
+                        </p:column>
+                        
+                        <!-- Rodapé com Botões de Ação -->
+                        <f:facet name="footer">
+                            <div class="button-group">
+                                <!-- Botão: Novo Game -->
+                                <p:commandButton id="btnCreate" value="➕ Novo Game" 
+                                               icon="pi pi-plus"
+                                               onclick="PF('dlgCreate').show()"/>
+                                
+                                <!-- Botão: Editar Game -->
+                                <p:commandButton id="btnEdit" icon="pi pi-user-edit" 
+                                               value="✏️ Editar Game"
+                                               update="formEdit" 
+                                               oncomplete="PF('dlgEdit').show()"
+                                               disabled="#{empty gameController.selected}"/>
+                                
+                                <!-- Botão: Excluir Game -->
+                                <p:commandButton id="btnDelete" icon="pi pi-trash" 
+                                               value="🗑️ Excluir Game"
+                                               actionListener="#{gameController.deletarGame()}" 
+                                               update="frmList"
+                                               disabled="#{empty gameController.selected}">
+                                    <p:confirm header="⚠️ Confirmar Exclusão" 
+                                              message="Você confirma a exclusão deste game?" 
+                                              icon="pi pi-exclamation-triangle" />
+                                </p:commandButton>
+                                
+                                <!-- Botão: Visualizar Detalhes -->
+                                <p:commandButton id="btnView" icon="pi pi-eye" 
+                                               value="👁️ Detalhes"
+                                               update="formView" 
+                                               oncomplete="PF('dlgView').show()"
+                                               disabled="#{empty gameController.selected}"/>
+                            </div>
+                        </f:facet>
+                    </p:dataTable>
+                    
+                    <!-- Diálogo de Confirmação para Exclusão -->
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="✓ Sim" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+                        <p:commandButton value="✗ Não" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+                    </p:confirmDialog>
+                    
+                </p:fieldset>
+            </h:panelGroup>
+        </h:form>
+        
+        <!-- ============================================== -->
+        <!-- DIÁLOGO 1: CRIAR NOVO GAME                   -->
+        <!-- ============================================== -->
+        <p:dialog header="➕ Novo Game" widgetVar="dlgCreate" height="550" width="700" 
+                 showEffect="fade" modal="true" resizable="false">
+            <h:form id="formCreate">
+                <p:growl id="growl" showDetail="true" />
+                <h:panelGrid id="pngCadastro" columns="2" cellpadding="10" style="width: 100%;">
+                    
+                    <!-- Nome do Game -->
+                    <p:outputLabel id="oplNome" value="Nome do Game:" for="iptNome" style="font-weight: bold;"/>
+                    <p:inputText id="iptNome" size="40" label="Nome" 
+                                required="true" requiredMessage="O nome do game é obrigatório!"
+                                value="#{gameController.game.nome}" maxlength="100" 
+                                placeholder="Ex: Elden Ring"/>
+                    
+                    <!-- Plataforma -->
+                    <p:outputLabel id="oplPlataforma" value="Plataforma:" for="sltPlataforma" style="font-weight: bold;"/>
+                    <p:selectOneMenu id="sltPlataforma" value="#{gameController.game.plataforma}" 
+                                    required="true" requiredMessage="Selecione uma plataforma">
+                        <f:selectItem itemLabel="-- Selecione --" itemValue=""/>
+                        <f:selectItem itemLabel="PC" itemValue="PC"/>
+                        <f:selectItem itemLabel="PlayStation" itemValue="PlayStation"/>
+                        <f:selectItem itemLabel="Xbox" itemValue="Xbox"/>
+                        <f:selectItem itemLabel="Nintendo" itemValue="Nintendo"/>
+                    </p:selectOneMenu>
+                    
+                    <!-- Gênero -->
+                    <p:outputLabel id="oplGenero" value="Gênero:" for="sltGenero" style="font-weight: bold;"/>
+                    <p:selectOneMenu id="sltGenero" value="#{gameController.game.genero}"
+                                    required="true" requiredMessage="Selecione um gênero">
+                        <f:selectItem itemLabel="-- Selecione --" itemValue=""/>
+                        <f:selectItem itemLabel="Ação" itemValue="Ação"/>
+                        <f:selectItem itemLabel="RPG" itemValue="RPG"/>
+                        <f:selectItem itemLabel="Estratégia" itemValue="Estratégia"/>
+                        <f:selectItem itemLabel="Esportes" itemValue="Esportes"/>
+                        <f:selectItem itemLabel="Aventura" itemValue="Aventura"/>
+                        <f:selectItem itemLabel="Simulação" itemValue="Simulação"/>
+                    </p:selectOneMenu>
+                    
+                    <!-- Ano de Lançamento -->
+                    <p:outputLabel id="oplAno" value="Ano de Lançamento:" for="iptAno" style="font-weight: bold;"/>
+                    <p:inputNumber id="iptAno" value="#{gameController.game.anoLancamento}" 
+                                  minValue="1980" maxValue="2099" decimalPlaces="0"
+                                  placeholder="2023"/>
+                    
+                    <!-- Desenvolvedora -->
+                    <p:outputLabel id="oplDesenvolvadora" value="Desenvolvedora:" for="iptDesenvolvadora" style="font-weight: bold;"/>
+                    <p:inputText id="iptDesenvolvadora" size="40" label="Desenvolvedora"
+                                value="#{gameController.game.desenvolvedora}" maxlength="100"
+                                placeholder="Ex: FromSoftware"/>
+                    
+                    <!-- Preço -->
+                    <p:outputLabel id="oplPreco" value="Preço (R$):" for="iptPreco" style="font-weight: bold;"/>
+                    <p:inputNumber id="iptPreco" value="#{gameController.game.preco}" minValue="0" 
+                                  decimalPlaces="2" symbol="R$ " symbolPosition="p"
+                                  placeholder="299.90"/>
+                    
+                    <!-- Descrição -->
+                    <p:outputLabel id="oplDescricao" value="Descrição:" for="iptDescricao" style="font-weight: bold; vertical-align: top;"/>
+                    <p:inputTextarea id="iptDescricao" rows="4" cols="40" 
+                                   value="#{gameController.game.descricao}"
+                                   maxlength="500"
+                                   placeholder="Descrição do game..."/>
+                    
+                </h:panelGrid>
+                
+                <p:commandButton id="btnCadastrar" value="✓ Cadastrar" 
+                               update="@form,frmList"
+                               action="#{gameController.adicionarGame()}" 
+                               oncomplete="if(!args.validationFailed) dlgCreate.hide()"
+                               style="margin-right: 10px;"/>
+                <p:commandButton type="button" value="✗ Cancelar" onclick="dlgCreate.hide()"/>
+            </h:form>
+        </p:dialog>
+        
+        <!-- ============================================== -->
+        <!-- DIÁLOGO 2: EDITAR GAME                        -->
+        <!-- ============================================== -->
+        <p:dialog header="✏️ Editar Game" widgetVar="dlgEdit" height="550" width="700" 
+                 showEffect="fade" modal="true" resizable="false">
+            <h:form id="formEdit">
+                <p:growl id="growl2" showDetail="true" />
+                <h:panelGrid id="pngEdicao" columns="2" cellpadding="10" style="width: 100%;">
+                    
+                    <!-- ID (Somente Leitura) -->
+                    <p:outputLabel id="oplIdEdit" value="ID:" for="iptIdEdit" style="font-weight: bold;"/>
+                    <p:inputText id="iptIdEdit" size="10" label="ID" disabled="true"
+                                value="#{gameController.selected.id}" />
+                    
+                    <!-- Nome do Game -->
+                    <p:outputLabel id="oplNomeEdit" value="Nome do Game:" for="iptNomeEdit" style="font-weight: bold;"/>
+                    <p:inputText id="iptNomeEdit" size="40" label="Nome" required="true"
+                                requiredMessage="O nome do game é obrigatório!"
+                                value="#{gameController.selected.nome}" maxlength="100" />
+                    
+                    <!-- Plataforma -->
+                    <p:outputLabel id="oplPlataformaEdit" value="Plataforma:" for="sltPlataformaEdit" style="font-weight: bold;"/>
+                    <p:selectOneMenu id="sltPlataformaEdit" value="#{gameController.selected.plataforma}">
+                        <f:selectItem itemLabel="-- Selecione --" itemValue=""/>
+                        <f:selectItem itemLabel="PC" itemValue="PC"/>
+                        <f:selectItem itemLabel="PlayStation" itemValue="PlayStation"/>
+                        <f:selectItem itemLabel="Xbox" itemValue="Xbox"/>
+                        <f:selectItem itemLabel="Nintendo" itemValue="Nintendo"/>
+                    </p:selectOneMenu>
+                    
+                    <!-- Gênero -->
+                    <p:outputLabel id="oplGeneroEdit" value="Gênero:" for="sltGeneroEdit" style="font-weight: bold;"/>
+                    <p:selectOneMenu id="sltGeneroEdit" value="#{gameController.selected.genero}">
+                        <f:selectItem itemLabel="-- Selecione --" itemValue=""/>
+                        <f:selectItem itemLabel="Ação" itemValue="Ação"/>
+                        <f:selectItem itemLabel="RPG" itemValue="RPG"/>
+                        <f:selectItem itemLabel="Estratégia" itemValue="Estratégia"/>
+                        <f:selectItem itemLabel="Esportes" itemValue="Esportes"/>
+                        <f:selectItem itemLabel="Aventura" itemValue="Aventura"/>
+                        <f:selectItem itemLabel="Simulação" itemValue="Simulação"/>
+                    </p:selectOneMenu>
+                    
+                    <!-- Ano -->
+                    <p:outputLabel id="oplAnoEdit" value="Ano de Lançamento:" for="iptAnoEdit" style="font-weight: bold;"/>
+                    <p:inputNumber id="iptAnoEdit" value="#{gameController.selected.anoLancamento}" 
+                                  minValue="1980" maxValue="2099" decimalPlaces="0" />
+                    
+                    <!-- Desenvolvedora -->
+                    <p:outputLabel id="oplDesenvolvedoraEdit" value="Desenvolvedora:" for="iptDesenvolvedoraEdit" style="font-weight: bold;"/>
+                    <p:inputText id="iptDesenvolvedoraEdit" size="40" label="Desenvolvedora"
+                                value="#{gameController.selected.desenvolvedora}" maxlength="100" />
+                    
+                    <!-- Preço -->
+                    <p:outputLabel id="oplPrecoEdit" value="Preço (R$):" for="iptPrecoEdit" style="font-weight: bold;"/>
+                    <p:inputNumber id="iptPrecoEdit" value="#{gameController.selected.preco}" minValue="0" 
+                                  decimalPlaces="2" symbol="R$ " symbolPosition="p" />
+                    
+                    <!-- Descrição -->
+                    <p:outputLabel id="oplDescricaoEdit" value="Descrição:" for="iptDescricaoEdit" style="font-weight: bold; vertical-align: top;"/>
+                    <p:inputTextarea id="iptDescricaoEdit" rows="4" cols="40" 
+                                   value="#{gameController.selected.descricao}"
+                                   maxlength="500"/>
+                    
+                </h:panelGrid>
+                
+                <p:commandButton id="btnSalvarEdicao" value="✓ Salvar" 
+                               update="@form,frmList"
+                               action="#{gameController.editarGame()}" 
+                               oncomplete="if(!args.validationFailed) dlgEdit.hide()"
+                               style="margin-right: 10px;"/>
+                <p:commandButton type="button" value="✗ Cancelar" onclick="dlgEdit.hide()"/>
+            </h:form>
+        </p:dialog>
+        
+        <!-- ============================================== -->
+        <!-- DIÁLOGO 3: VISUALIZAR DETALHES                -->
+        <!-- ============================================== -->
+        <p:dialog header="👁️ Detalhes do Game" widgetVar="dlgView" height="450" width="600" 
+                 showEffect="fade" modal="true" resizable="false">
+            <h:form id="formView">
+                <h:panelGrid id="pngView" columns="2" cellpadding="15" style="width: 100%;">
+                    
+                    <p:outputLabel value="🆔 ID:" style="font-weight: bold;"/>
+                    <p:outputLabel value="#{gameController.selected.id}"/>
+                    
+                    <p:outputLabel value="🎮 Nome:" style="font-weight: bold;"/>
+                    <p:outputLabel value="#{gameController.selected.nome}" style="font-size: 1.1em; color: #667eea;"/>
+                    
+                    <p:outputLabel value="📱 Plataforma:" style="font-weight: bold;"/>
+                    <p:outputLabel value="#{gameController.selected.plataforma}"/>
+                    
+                    <p:outputLabel value="🏷️ Gênero:" style="font-weight: bold;"/>
+                    <p:outputLabel value="#{gameController.selected.genero}"/>
+                    
+                    <p:outputLabel value="📅 Ano de Lançamento:" style="font-weight: bold;"/>
+                    <p:outputLabel value="#{gameController.selected.anoLancamento}"/>
+                    
+                    <p:outputLabel value="🏢 Desenvolvedora:" style="font-weight: bold;"/>
+                    <p:outputLabel value="#{gameController.selected.desenvolvedora}"/>
+                    
+                    <p:outputLabel value="💰 Preço:" style="font-weight: bold;"/>
+                    <p:outputLabel value="R$ #{gameController.selected.preco}" style="color: #27ae60; font-weight: bold;"/>
+                    
+                    <p:outputLabel value="📝 Descrição:" style="font-weight: bold; vertical-align: top;"/>
+                    <p:outputLabel value="#{gameController.selected.descricao}" 
+                                  style="word-wrap: break-word; white-space: normal;"/>
+                    
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+        
+    </h:body>
+</html>
+>>>>>>> 448d01d61316df689763efce065d52cd8270a1ac

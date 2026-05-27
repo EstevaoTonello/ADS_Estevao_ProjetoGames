@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 CREATE TABLE games (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -7,3 +8,13 @@ CREATE TABLE games (
     ano INTEGER,
     multiplayer BOOLEAN
 );
+=======
+CREATE TABLE game (
+    id SERIAL PRIMARY KEY,
+    titulo VARCHAR(100),
+    genero VARCHAR(50),
+    plataforma VARCHAR(50),
+    preco NUMERIC(10,2)
+);
+
+>>>>>>> 448d01d61316df689763efce065d52cd8270a1ac

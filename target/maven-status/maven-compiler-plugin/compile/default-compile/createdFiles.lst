@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 br\upf\projetogames\resources\JakartaEE10Resource.class
 br\upf\projetogames\facade\GameFacade.class
 br\upf\projetogames\facade\AbstractFacade.class
@@ -5,3 +6,10 @@ br\upf\projetogames\controller\GameController.class
 br\upf\projetogames\entity\GameEntity.class
 br\upf\projetogames\JakartaRestConfiguration.class
 br\upf\projetogames\controller\LoginController.class
+=======
+br\upf\projetojfprimefaces\resources\JakartaEE10Resource.class
+br\upf\projetojfprimefaces\controller\GameController.class
+br\upf\projetojfprimefaces\JakartaRestConfiguration.class
+br\upf\projetojfprimefaces\controller\LoginController.class
+br\upf\projetojfprimefaces\entity\GameEntity.class
+>>>>>>> 448d01d61316df689763efce065d52cd8270a1ac

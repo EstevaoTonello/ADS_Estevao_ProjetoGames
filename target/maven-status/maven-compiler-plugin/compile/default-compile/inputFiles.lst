@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\tevot\OneDrive\Desktop\projetogames\src\main\java\br\upf\projetogames\controller\LoginController.java
 C:\Users\tevot\OneDrive\Desktop\projetogames\src\main\java\br\upf\projetogames\JakartaRestConfiguration.java
 C:\Users\tevot\OneDrive\Desktop\projetogames\src\main\java\br\upf\projetogames\facade\GameFacade.java
@@ -5,3 +6,10 @@ C:\Users\tevot\OneDrive\Desktop\projetogames\src\main\java\br\upf\projetogames\f
 C:\Users\tevot\OneDrive\Desktop\projetogames\src\main\java\br\upf\projetogames\controller\GameController.java
 C:\Users\tevot\OneDrive\Desktop\projetogames\src\main\java\br\upf\projetogames\entity\GameEntity.java
 C:\Users\tevot\OneDrive\Desktop\projetogames\src\main\java\br\upf\projetogames\resources\JakartaEE10Resource.java
+=======
+C:\Users\tevot\OneDrive\Desktop\projetoFinal\src\main\java\br\upf\projetojfprimefaces\JakartaRestConfiguration.java
+C:\Users\tevot\OneDrive\Desktop\projetoFinal\src\main\java\br\upf\projetojfprimefaces\controller\GameController.java
+C:\Users\tevot\OneDrive\Desktop\projetoFinal\src\main\java\br\upf\projetojfprimefaces\entity\GameEntity.java
+C:\Users\tevot\OneDrive\Desktop\projetoFinal\src\main\java\br\upf\projetojfprimefaces\controller\LoginController.java
+C:\Users\tevot\OneDrive\Desktop\projetoFinal\src\main\java\br\upf\projetojfprimefaces\resources\JakartaEE10Resource.java
+>>>>>>> 448d01d61316df689763efce065d52cd8270a1ac
