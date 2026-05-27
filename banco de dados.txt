@@ -1,0 +1,9 @@
+CREATE TABLE games (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    genero VARCHAR(100),
+    plataforma VARCHAR(100),
+    preco NUMERIC(10,2),
+    ano INTEGER,
+    multiplayer BOOLEAN
+);

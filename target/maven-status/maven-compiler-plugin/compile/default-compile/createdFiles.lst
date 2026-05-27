@@ -1,0 +1,7 @@
+br\upf\projetogames\resources\JakartaEE10Resource.class
+br\upf\projetogames\facade\GameFacade.class
+br\upf\projetogames\facade\AbstractFacade.class
+br\upf\projetogames\controller\GameController.class
+br\upf\projetogames\entity\GameEntity.class
+br\upf\projetogames\JakartaRestConfiguration.class
+br\upf\projetogames\controller\LoginController.class

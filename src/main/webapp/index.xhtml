@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>ProjetoGames</title>
+</h:head>
+
+<h:body>
+
+<h:form id="formGames">
+
+    <p:growl id="messages" showDetail="true"/>
+
+    <p:panel header="ProjetoGames - Controle de Games">
+
+        <p:commandButton value="Novo Game"
+                         icon="pi pi-plus"
+                         actionListener="#{gameController.novoGame}"
+                         update=":formDialog"
+                         oncomplete="PF('dlgGame').show()"/>
+
+        <p:commandButton value="Editar"
+                         icon="pi pi-pencil"
+                         actionListener="#{gameController.prepararEdicao}"
+                         update=":formDialog :formGames:messages"
+                         oncomplete="PF('dlgGame').show()"/>
+
+        <p:commandButton value="Excluir"
+                         icon="pi pi-trash"
+                         actionListener="#{gameController.excluir}"
+                         update="tabelaGames messages"/>
+
+        <p:dataTable id="tabelaGames"
+                     value="#{gameController.games}"
+                     var="game"
+                     selectionMode="single"
+                     selection="#{gameController.selectedGame}"
+                     rowKey="#{game.id}"
+                     paginator="true"
+                     rows="5">
+
+            <p:column headerText="ID">
+                <h:outputText value="#{game.id}"/>
+            </p:column>
+
+            <p:column headerText="Nome">
+                <h:outputText value="#{game.nome}"/>
+            </p:column>
+
+            <p:column headerText="Gênero">
+                <h:outputText value="#{game.genero}"/>
+            </p:column>
+
+            <p:column headerText="Plataforma">
+                <h:outputText value="#{game.plataforma}"/>
+            </p:column>
+
+            <p:column headerText="Preço">
+                <h:outputText value="#{game.preco}">
+                    <f:convertNumber type="currency" currencySymbol="R$ " locale="pt_BR"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="Ano">
+                <h:outputText value="#{game.ano}"/>
+            </p:column>
+
+            <p:column headerText="Multiplayer">
+                <h:outputText value="#{game.multiplayer ? 'Sim' : 'Não'}"/>
+            </p:column>
+
+        </p:dataTable>
+
+    </p:panel>
+
+</h:form>
+
+<h:form id="formDialog">
+
+    <p:dialog header="Game" widgetVar="dlgGame" modal="true" width="450">
+
+        <p:panelGrid columns="2" layout="grid" styleClass="ui-fluid">
+
+            <p:outputLabel for="nome" value="Nome"/>
+            <p:inputText id="nome" value="#{gameController.game.nome}"/>
+
+            <p:outputLabel for="genero" value="Gênero"/>
+            <p:inputText id="genero" value="#{gameController.game.genero}"/>
+
+            <p:outputLabel for="plataforma" value="Plataforma"/>
+            <p:inputText id="plataforma" value="#{gameController.game.plataforma}"/>
+
+            <p:outputLabel for="preco" value="Preço"/>
+            <p:inputNumber id="preco"
+                           value="#{gameController.game.preco}"
+                           decimalPlaces="2"
+                           decimalSeparator=","
+                           thousandSeparator="."/>
+
+            <p:outputLabel for="ano" value="Ano"/>
+            <p:inputNumber id="ano"
+                           value="#{gameController.game.ano}"
+                           decimalPlaces="0"/>
+
+            <p:outputLabel for="multiplayer" value="Multiplayer"/>
+            <p:selectBooleanCheckbox id="multiplayer"
+                                     value="#{gameController.game.multiplayer}"/>
+
+        </p:panelGrid>
+
+        <p:commandButton value="Salvar"
+                         icon="pi pi-check"
+                         actionListener="#{gameController.salvar}"
+                         update=":formGames:tabelaGames :formGames:messages"
+                         oncomplete="PF('dlgGame').hide()"/>
+
+        <p:commandButton value="Cancelar"
+                         type="button"
+                         onclick="PF('dlgGame').hide()"/>
+
+    </p:dialog>
+
+</h:form>
+
+</h:body>
+</html>
